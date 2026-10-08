@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "title": "LOCKIN — Focus & accountability sessions",
+    "description": "Set a task goal, run a timed session, block unrelated sites, and review your session history. Camera video is processed on your device and never uploaded."
+  },
+  "common": {
+    "appName": "LOCKIN",
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "back": "Back",
+    "close": "Close",
+    "retry": "Try again",
+    "comingSoon": "Coming soon",
+    "skipToContent": "Skip to main content"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "dashboard": "Home",
+    "newSession": "New session",
+    "history": "History",
+    "coach": "AI Coach",
+    "settings": "Settings",
+    "signOut": "Sign out",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "language": {
+    "label": "Language",
+    "id": "Bahasa Indonesia",
+    "en": "English"
+  },
+  "landing": {
+    "eyebrow": "For Indonesian university students",
+    "headline": "Set a goal. Lock out distractions. Review your session.",
+    "sub": "LOCKIN helps you turn study intentions into structured work sessions — with a task goal, a timer, a website allowlist, and optional camera reminders.",
+    "ctaStart": "Get started free",
+    "ctaSignIn": "I already have an account",
+    "feature1Title": "Goal & timer",
+    "feature1Body": "Write a specific task and choose a duration. Pauses never count as session time.",
+    "feature2Title": "Website allowlist",
+    "feature2Body": "The Chrome extension blocks sites outside your list during a session. Overrides are always deliberate and recorded.",
+    "feature3Title": "Optional camera reminders",
+    "feature3Body": "Face and phone detection runs in your browser. Video never leaves your device.",
+    "feature4Title": "Your history, your control",
+    "feature4Body": "Compare your plan with what happened, and delete records whenever you like.",
+    "disclaimer": "LOCKIN records session time, not proof of focus or productivity."
+  },
+  "auth": {
+    "signInTitle": "Sign in to LOCKIN",
+    "signUpTitle": "Create your LOCKIN account",
+    "email": "Email",
+    "password": "Password",
+    "passwordHint": "At least 8 characters.",
+    "signInButton": "Sign in",
+    "signUpButton": "Sign up",
+    "google": "Continue with Google",
+    "or": "or",
+    "noAccount": "No account yet?",
+    "haveAccount": "Already have an account?",
+    "checkEmail": "Account created. If email confirmation is enabled, check your inbox to finish signing up.",
+    "errors": {
+      "invalidCredentials": "Incorrect email or password.",
+      "weakPassword": "Password must be at least 8 characters.",
+      "invalidEmail": "Enter a valid email address.",
+      "generic": "Something went wrong. Please try again.",
+      "callback": "Could not complete sign-in. Please try again."
+    }
+  },
+  "dashboard": {
+    "title": "Home",
+    "greeting": "Hi! Ready to start a session?",
+    "startCta": "Start a new session",
+    "historyCta": "View history"
+  },
+  "coach": {
+    "title": "AI Coach",
+    "badge": "Coming soon",
+    "body": "Session reflections and chat with the AI Coach will arrive in a later release. This feature is not active and no data is sent to any AI service.",
+    "privacy": "When available, the AI Coach will only receive an anonymous session summary (no name, email, or video)."
+  },
+  "settings": {
+    "title": "Settings",
+    "appearance": "Appearance",
+    "account": "Account",
+    "signedInAs": "Signed in as {email}"
+  },
+  "errors": {
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "The page you're looking for doesn't exist or was removed.",
+    "genericTitle": "Something went wrong",
+    "genericBody": "Something didn't work. Please try again."
+  }
+}

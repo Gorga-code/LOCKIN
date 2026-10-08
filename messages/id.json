@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "title": "LOCKIN — Sesi fokus & akuntabilitas",
+    "description": "Tetapkan target tugas, jalankan sesi berwaktu, blokir situs yang tidak relevan, dan tinjau riwayat sesimu. Video kamera diproses di perangkatmu dan tidak pernah diunggah."
+  },
+  "common": {
+    "appName": "LOCKIN",
+    "loading": "Memuat…",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "confirm": "Konfirmasi",
+    "delete": "Hapus",
+    "back": "Kembali",
+    "close": "Tutup",
+    "retry": "Coba lagi",
+    "comingSoon": "Segera hadir",
+    "skipToContent": "Langsung ke konten utama"
+  },
+  "nav": {
+    "label": "Navigasi utama",
+    "dashboard": "Beranda",
+    "newSession": "Sesi baru",
+    "history": "Riwayat",
+    "coach": "AI Coach",
+    "settings": "Pengaturan",
+    "signOut": "Keluar",
+    "signIn": "Masuk",
+    "signUp": "Daftar",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu"
+  },
+  "theme": {
+    "label": "Tema",
+    "light": "Terang",
+    "dark": "Gelap",
+    "system": "Ikuti sistem"
+  },
+  "language": {
+    "label": "Bahasa",
+    "id": "Bahasa Indonesia",
+    "en": "English"
+  },
+  "landing": {
+    "eyebrow": "Untuk mahasiswa Indonesia",
+    "headline": "Tetapkan target. Kunci gangguan. Tinjau sesimu.",
+    "sub": "LOCKIN membantumu mengubah niat belajar menjadi sesi kerja yang terstruktur — dengan target tugas, timer, daftar situs yang diizinkan, dan pengingat kamera opsional.",
+    "ctaStart": "Mulai gratis",
+    "ctaSignIn": "Saya sudah punya akun",
+    "feature1Title": "Target & timer",
+    "feature1Body": "Tulis tugas yang spesifik dan pilih durasi. Jeda tidak dihitung sebagai waktu sesi.",
+    "feature2Title": "Daftar situs diizinkan",
+    "feature2Body": "Ekstensi Chrome memblokir situs di luar daftar selama sesi. Override selalu disengaja dan tercatat.",
+    "feature3Title": "Pengingat kamera opsional",
+    "feature3Body": "Deteksi wajah dan ponsel berjalan di browsermu. Video tidak pernah meninggalkan perangkat.",
+    "feature4Title": "Riwayat milikmu",
+    "feature4Body": "Bandingkan rencana dengan yang terjadi, lalu hapus catatan kapan pun kamu mau.",
+    "disclaimer": "LOCKIN mencatat waktu sesi, bukan bukti fokus atau produktivitas."
+  },
+  "auth": {
+    "signInTitle": "Masuk ke LOCKIN",
+    "signUpTitle": "Buat akun LOCKIN",
+    "email": "Email",
+    "password": "Kata sandi",
+    "passwordHint": "Minimal 8 karakter.",
+    "signInButton": "Masuk",
+    "signUpButton": "Daftar",
+    "google": "Lanjutkan dengan Google",
+    "or": "atau",
+    "noAccount": "Belum punya akun?",
+    "haveAccount": "Sudah punya akun?",
+    "checkEmail": "Akun dibuat. Jika konfirmasi email aktif, cek kotak masukmu untuk menyelesaikan pendaftaran.",
+    "errors": {
+      "invalidCredentials": "Email atau kata sandi salah.",
+      "weakPassword": "Kata sandi minimal 8 karakter.",
+      "invalidEmail": "Masukkan alamat email yang valid.",
+      "generic": "Terjadi kesalahan. Silakan coba lagi.",
+      "callback": "Gagal menyelesaikan proses masuk. Silakan coba lagi."
+    }
+  },
+  "dashboard": {
+    "title": "Beranda",
+    "greeting": "Halo! Siap mulai sesi?",
+    "startCta": "Mulai sesi baru",
+    "historyCta": "Lihat riwayat"
+  },
+  "coach": {
+    "title": "AI Coach",
+    "badge": "Segera hadir",
+    "body": "Refleksi sesi dan obrolan dengan AI Coach akan tersedia di rilis berikutnya. Fitur ini belum aktif dan tidak ada data yang dikirim ke layanan AI.",
+    "privacy": "Saat tersedia, AI Coach hanya akan menerima ringkasan sesi anonim (tanpa nama, email, atau video)."
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "appearance": "Tampilan",
+    "account": "Akun",
+    "signedInAs": "Masuk sebagai {email}"
+  },
+  "errors": {
+    "notFoundTitle": "Halaman tidak ditemukan",
+    "notFoundBody": "Halaman yang kamu cari tidak ada atau sudah dihapus.",
+    "genericTitle": "Terjadi kesalahan",
+    "genericBody": "Ada yang tidak beres. Silakan coba lagi."
+  }
+}

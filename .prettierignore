@@ -1,0 +1,15 @@
+node_modules
+.next
+coverage
+playwright-report
+test-results
+extension/dist
+extension/node_modules
+supabase/.temp
+supabase/.branches
+package-lock.json
+extension/package-lock.json
+docs/product-spec.md
+docs/ai-coach-design.md
+next-env.d.ts
+public/models
