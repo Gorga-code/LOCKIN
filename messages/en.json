@@ -112,6 +112,169 @@
         "indonesiaEast": "Indonesia — Eastern"
       }
     }
+    ,
+    "skeleton": {
+      "eyebrow": "Session flow preview",
+      "placeholder": "UI preview",
+      "notActive": "Not active yet",
+      "placeholderValue": "Placeholder",
+      "back": "Back"
+    },
+    "backToModes": "Back to session types",
+    "modeSelection": {
+      "title": "Choose a session type",
+      "choose": "Choose this flow",
+      "solo": {
+        "title": "Solo session",
+        "description": "Set a goal, choose a duration, and prepare your personal focus tools."
+      },
+      "multiplayer": {
+        "title": "Multiplayer session",
+        "description": "Create or join a private study room with up to five participants."
+      }
+    },
+    "solo": {
+      "title": "Solo session setup",
+      "description": "This is the setup skeleton. The controls will be connected in later implementation stages.",
+      "startPlaceholder": "Preview active session",
+      "form": {
+        "title": "Session title",
+        "titlePlaceholder": "e.g. Finish my research draft",
+        "notes": "Task notes",
+        "notesPlaceholder": "Add any details, reminders, or notes for this session.",
+        "goal": "Task goal",
+        "goalPlaceholder": "What do you want to accomplish?",
+        "duration": "Duration",
+        "durationOptions": {
+          "25": "25 minutes",
+          "50": "50 minutes",
+          "90": "90 minutes"
+        },
+        "camera": "Camera mode",
+        "cameraDescription": "Turn local camera monitoring on or off.",
+        "restrictions": "Website restrictions",
+        "restrictionsDescription": "Add websites that will be available during the session.",
+        "addWebsite": "Add website",
+        "noWebsites": "No websites added yet.",
+        "websitePlaceholder": "example.com",
+        "back": "Back",
+        "start": "Start session"
+      },
+      "fields": {
+        "goal": {
+          "title": "Task goal",
+          "description": "A specific task will be entered here."
+        },
+        "duration": {
+          "title": "Duration",
+          "description": "A positive session duration will be selected here."
+        },
+        "camera": {
+          "title": "Camera mode",
+          "description": "Camera on/off and local processing controls will appear here."
+        },
+        "extension": {
+          "title": "Website restrictions",
+          "description": "Allowlist and extension preflight controls will appear here."
+        }
+      }
+    },
+    "multiplayer": {
+      "title": "Multiplayer session",
+      "description": "Choose whether to create a room or preview an existing room.",
+      "choose": "Continue",
+      "back": "Back to multiplayer choice",
+      "create": {
+        "title": "Create a room",
+        "description": "Set up a private 1-on-1 or group-study room.",
+        "setupDescription": "Create a room and wait for other participants to join.",
+        "createButton": "Create room",
+        "fields": {
+          "roomName": {
+            "title": "Room name",
+            "description": "A room title will be entered here.",
+            "placeholder": "e.g. Sunday study room"
+          },
+          "capacity": {
+            "title": "Participant limit",
+            "description": "The limit will be selectable from 2 to 5 people.",
+            "options": {
+              "2": "2 people",
+              "3": "3 people",
+              "4": "4 people",
+              "5": "5 people"
+            }
+          },
+          "goal": {
+            "title": "Room goal",
+            "description": "A shared study goal will be entered here.",
+            "placeholder": "What will the group work on?"
+          },
+          "duration": {
+            "title": "Planned duration",
+            "description": "The room's planned duration will be selected here.",
+            "options": {
+              "25": "25 minutes",
+              "50": "50 minutes",
+              "90": "90 minutes"
+            }
+          }
+        }
+      },
+      "room": {
+        "eyebrow": "Room lobby",
+        "description": "Your room is ready. Other participants can join before you start.",
+        "back": "Back to room setup",
+        "participants": "Participants",
+        "duration": "Planned duration",
+        "minutes": "minutes",
+        "goal": "Room goal",
+        "untitled": "Untitled room",
+        "noGoal": "No room goal added.",
+        "placeholderBadge": "UI preview only",
+        "leave": "Leave room",
+        "start": "Start room"
+      },
+      "join": {
+        "title": "Join a room",
+        "description": "Preview an available room before joining.",
+        "setupDescription": "Room discovery and preview data will be connected in a later stage.",
+        "previewTitle": "Room preview",
+        "joinPlaceholder": "Preview join flow",
+        "preview": {
+          "participants": {
+            "title": "Participants"
+          },
+          "elapsed": {
+            "title": "Elapsed time"
+          },
+          "status": {
+            "title": "Room status"
+          }
+        }
+      }
+    },
+    "active": {
+      "eyebrow": "Solo session",
+      "title": "Active session preview",
+      "description": "This preview shows where the local camera and session timer will appear.",
+      "cameraPlaceholder": "Camera preview",
+      "cameraDescription": "Turn on the camera when you are ready.",
+      "cameraDenied": "Camera access was denied. Check Chrome site permissions and try again.",
+      "cameraUnavailable": "Camera is unavailable or unsupported by this browser.",
+      "cameraOn": "Turn on camera",
+      "cameraOff": "Turn off camera",
+      "cameraRequesting": "Requesting camera…",
+      "privacy": "Video stays on this device and is never uploaded.",
+      "timerLabel": "Session timer",
+      "plannedDuration": "Planned duration: {minutes} minutes",
+      "previewBadge": "Preview only",
+      "startedBadge": "Session started",
+      "start": "Start",
+      "untitled": "Untitled session",
+      "noNotes": "No notes added for this session.",
+      "back": "Back to setup"
+    }
   },
   "coach": {
     "title": "AI Coach",

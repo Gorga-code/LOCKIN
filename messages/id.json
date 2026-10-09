@@ -112,6 +112,169 @@
         "indonesiaEast": "Indonesia — Timur"
       }
     }
+    ,
+    "skeleton": {
+      "eyebrow": "Pratinjau alur sesi",
+      "placeholder": "Pratinjau UI",
+      "notActive": "Belum aktif",
+      "placeholderValue": "Placeholder",
+      "back": "Kembali"
+    },
+    "backToModes": "Kembali ke pilihan sesi",
+    "modeSelection": {
+      "title": "Pilih jenis sesi",
+      "choose": "Pilih alur ini",
+      "solo": {
+        "title": "Sesi solo",
+        "description": "Tetapkan target, pilih durasi, dan siapkan alat fokus pribadimu."
+      },
+      "multiplayer": {
+        "title": "Sesi multiplayer",
+        "description": "Buat atau gabung ke ruang belajar privat dengan maksimal lima peserta."
+      }
+    },
+    "solo": {
+      "title": "Pengaturan sesi solo",
+      "description": "Ini adalah kerangka pengaturan. Kontrol akan dihubungkan pada tahap implementasi berikutnya.",
+      "startPlaceholder": "Pratinjau sesi aktif",
+      "form": {
+        "title": "Judul sesi",
+        "titlePlaceholder": "contoh: Menyelesaikan draft penelitian",
+        "notes": "Catatan tugas",
+        "notesPlaceholder": "Tambahkan detail, pengingat, atau catatan untuk sesi ini.",
+        "goal": "Target tugas",
+        "goalPlaceholder": "Apa yang ingin kamu selesaikan?",
+        "duration": "Durasi",
+        "durationOptions": {
+          "25": "25 menit",
+          "50": "50 menit",
+          "90": "90 menit"
+        },
+        "camera": "Mode kamera",
+        "cameraDescription": "Nyalakan atau matikan pemantauan kamera lokal.",
+        "restrictions": "Pembatasan situs",
+        "restrictionsDescription": "Tambahkan situs yang boleh diakses selama sesi.",
+        "addWebsite": "Tambah situs",
+        "noWebsites": "Belum ada situs yang ditambahkan.",
+        "websitePlaceholder": "contoh.com",
+        "back": "Kembali",
+        "start": "Mulai sesi"
+      },
+      "fields": {
+        "goal": {
+          "title": "Target tugas",
+          "description": "Tugas spesifik akan diisi di sini."
+        },
+        "duration": {
+          "title": "Durasi",
+          "description": "Durasi sesi positif akan dipilih di sini."
+        },
+        "camera": {
+          "title": "Mode kamera",
+          "description": "Kontrol kamera nyala/mati dan pemrosesan lokal akan muncul di sini."
+        },
+        "extension": {
+          "title": "Pembatasan situs",
+          "description": "Kontrol allowlist dan preflight ekstensi akan muncul di sini."
+        }
+      }
+    },
+    "multiplayer": {
+      "title": "Sesi multiplayer",
+      "description": "Pilih apakah ingin membuat ruang atau melihat pratinjau ruang yang tersedia.",
+      "choose": "Lanjutkan",
+      "back": "Kembali ke pilihan multiplayer",
+      "create": {
+        "title": "Buat ruang",
+        "description": "Siapkan ruang privat 1-on-1 atau belajar kelompok.",
+        "setupDescription": "Buat ruang dan tunggu peserta lain untuk bergabung.",
+        "createButton": "Buat ruang",
+        "fields": {
+          "roomName": {
+            "title": "Nama ruang",
+            "description": "Judul ruang akan diisi di sini.",
+            "placeholder": "contoh: Ruang belajar Minggu"
+          },
+          "capacity": {
+            "title": "Batas peserta",
+            "description": "Batas dapat dipilih dari 2 sampai 5 orang.",
+            "options": {
+              "2": "2 orang",
+              "3": "3 orang",
+              "4": "4 orang",
+              "5": "5 orang"
+            }
+          },
+          "goal": {
+            "title": "Target ruang",
+            "description": "Target belajar bersama akan diisi di sini.",
+            "placeholder": "Apa yang akan dikerjakan bersama?"
+          },
+          "duration": {
+            "title": "Durasi yang direncanakan",
+            "description": "Durasi rencana ruang akan dipilih di sini.",
+            "options": {
+              "25": "25 menit",
+              "50": "50 menit",
+              "90": "90 menit"
+            }
+          }
+        }
+      },
+      "room": {
+        "eyebrow": "Lobi ruang",
+        "description": "Ruangmu sudah siap. Peserta lain dapat bergabung sebelum kamu memulainya.",
+        "back": "Kembali ke pengaturan ruang",
+        "participants": "Peserta",
+        "duration": "Durasi rencana",
+        "minutes": "menit",
+        "goal": "Target ruang",
+        "untitled": "Ruang tanpa nama",
+        "noGoal": "Belum ada target ruang.",
+        "placeholderBadge": "Hanya pratinjau UI",
+        "leave": "Keluar dari ruang",
+        "start": "Mulai ruang"
+      },
+      "join": {
+        "title": "Gabung ke ruang",
+        "description": "Lihat pratinjau ruang yang tersedia sebelum bergabung.",
+        "setupDescription": "Data penemuan dan pratinjau ruang akan dihubungkan pada tahap berikutnya.",
+        "previewTitle": "Pratinjau ruang",
+        "joinPlaceholder": "Pratinjau alur bergabung",
+        "preview": {
+          "participants": {
+            "title": "Peserta"
+          },
+          "elapsed": {
+            "title": "Waktu berjalan"
+          },
+          "status": {
+            "title": "Status ruang"
+          }
+        }
+      }
+    },
+    "active": {
+      "eyebrow": "Sesi solo",
+      "title": "Pratinjau sesi aktif",
+      "description": "Pratinjau ini menunjukkan lokasi kamera lokal dan timer sesi.",
+      "cameraPlaceholder": "Pratinjau kamera",
+      "cameraDescription": "Nyalakan kamera saat kamu siap.",
+      "cameraDenied": "Akses kamera ditolak. Periksa izin situs di Chrome lalu coba lagi.",
+      "cameraUnavailable": "Kamera tidak tersedia atau tidak didukung browser ini.",
+      "cameraOn": "Nyalakan kamera",
+      "cameraOff": "Matikan kamera",
+      "cameraRequesting": "Meminta akses kamera…",
+      "privacy": "Video tetap di perangkat ini dan tidak pernah diunggah.",
+      "timerLabel": "Timer sesi",
+      "plannedDuration": "Durasi rencana: {minutes} menit",
+      "previewBadge": "Hanya pratinjau",
+      "startedBadge": "Sesi dimulai",
+      "start": "Mulai",
+      "untitled": "Sesi tanpa judul",
+      "noNotes": "Tidak ada catatan untuk sesi ini.",
+      "back": "Kembali ke pengaturan"
+    }
   },
   "coach": {
     "title": "AI Coach",
