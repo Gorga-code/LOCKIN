@@ -84,6 +84,35 @@
     "startCta": "Start a new session",
     "historyCta": "View history"
   },
+  "session": {
+    "title": "Start a new session",
+    "subtitle": "Set up your local camera and session preferences before you begin.",
+    "back": "Back to home",
+    "camera": {
+      "title": "Camera preview",
+      "description": "Your camera stays on this device. Turn it on when you are ready.",
+      "previewLabel": "Local camera preview",
+      "privacy": "Video is processed locally and never uploaded.",
+      "turnOn": "Turn on camera",
+      "turnOff": "Turn off camera",
+      "requesting": "Requesting camera…",
+      "permissionDenied": "Camera access was denied. Allow camera access for localhost in Chrome site settings, then try again.",
+      "unavailable": "Camera is unavailable or this browser does not support camera access."
+    },
+    "options": {
+      "title": "Session options",
+      "description": "These preferences stay on this page for now.",
+      "region": "Region",
+      "selectRegion": "Select a region",
+      "displayName": "Display name",
+      "displayNamePlaceholder": "Enter a display name",
+      "regions": {
+        "indonesiaWest": "Indonesia — Western",
+        "indonesiaCentral": "Indonesia — Central",
+        "indonesiaEast": "Indonesia — Eastern"
+      }
+    }
+  },
   "coach": {
     "title": "AI Coach",
     "badge": "Coming soon",

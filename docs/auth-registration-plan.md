@@ -174,3 +174,173 @@ This approach is technically sound and matches the requested behavior:
 - It avoids weakening protected-route middleware.
 - It handles both English and Indonesian copy through the existing i18n system.
 - It does not require a database migration.
+
+---
+
+# Camera Session Page Plan
+
+## Status
+
+Planning only. No camera/session application code has been changed by this section.
+
+## Goal
+
+After a user has successfully signed in, the existing **Start a new session** action should open `/session/new` instead of a 404 page. The first version of this page will provide an Omegle-style camera preview experience, but without peer matching or sending video to another person:
+
+- Ask the browser for camera permission.
+- Show the local camera preview after permission is granted.
+- Show a sidebar with session options for region and display name.
+- Keep raw camera frames local to the browser.
+- Stop all camera tracks when the user leaves the page or the session is cancelled.
+
+The page remains protected by the existing `/session` middleware rule, so an unauthenticated visitor should be redirected to sign in.
+
+## Current behavior found
+
+- The dashboard links to `/session/new`.
+- The navbar also links to `/session/new`.
+- `/session` is already included in `PROTECTED_PREFIXES`.
+- No `src/app/session/new/page.tsx` currently exists, so `/session/new` returns 404.
+- The database schema already has session-related tables and a `camera_mode` field, but the current request is specifically for the camera setup UI and preview.
+- The repository guardrails require all MediaPipe/vision processing to remain local and prohibit uploading or storing raw video/frames.
+
+## Proposed implementation
+
+### 1. Create the protected session setup page
+
+Add `src/app/session/new/page.tsx` as a client component because camera permissions and `navigator.mediaDevices.getUserMedia` are browser-only APIs.
+
+The page layout will contain:
+
+- A main camera panel with a `<video>` element.
+- A clear empty state before permission is requested.
+- A loading state while the browser permission request is pending.
+- A permission-denied/unavailable state with instructions to enable the camera in Chrome site settings.
+- A sidebar for session options.
+
+The initial page will not implement peer-to-peer video, public rooms, or remote users. “Omegle-style” refers to the visual camera-preview interaction only for this milestone.
+
+### 2. Implement camera permission and local preview
+
+Use `navigator.mediaDevices.getUserMedia({ video: true, audio: false })` only after the user presses an explicit **Turn on camera** action.
+
+The implementation will:
+
+1. Check that `navigator.mediaDevices.getUserMedia` exists.
+2. Request video only; microphone access will not be requested.
+3. Store the returned `MediaStream` in a ref.
+4. Attach the stream to the video element.
+5. Render the preview muted, inline, and without uploading the stream.
+6. Stop every track on unmount and when the user disables the camera.
+7. Convert browser failures into user-facing states without exposing raw browser errors unnecessarily.
+
+No `MediaRecorder`, upload endpoint, storage bucket, WebRTC peer connection, or raw frame persistence will be added for this milestone.
+
+### 3. Add sidebar options
+
+The sidebar will include:
+
+- **Region**: a select/input with a small, explicit initial option set. The first version should keep the value in component state unless product requirements define a persisted profile field.
+- **Display name**: a text input held in component state. It should be trimmed and length-limited before it can be used by a later session-start action.
+
+For this first camera page, these options are setup UI only. They will not be sent to Supabase or exposed to other users until a session-start/data model requirement is defined.
+
+Recommended initial defaults:
+
+- Region: a neutral “Select region” value rather than silently guessing the user’s location.
+- Display name: empty, with a clear optional/required label decided in the UI copy.
+
+### 4. Add localized copy
+
+Add camera/session translations to:
+
+- `messages/en.json`
+- `messages/id.json`
+
+The copy will cover:
+
+- Camera setup title and description.
+- Turn on camera.
+- Camera enabled/disabled states.
+- Permission request in progress.
+- Permission denied.
+- Camera unavailable or unsupported browser.
+- Region label.
+- Display name label.
+- Back/cancel navigation.
+
+Existing terminology and privacy wording will be preserved. UI copy will describe this as a local camera preview, not as verified focus/productivity time.
+
+### 5. Handle navigation and cleanup
+
+The page will provide a safe way to leave setup, such as a back/cancel link to `/dashboard`. Camera cleanup must run when:
+
+- The user navigates away.
+- The component unmounts.
+- The camera is manually turned off.
+- A permission request fails after a stream was partially created.
+
+The implementation must avoid retaining a `MediaStream` in global state or local storage.
+
+### 6. Keep authentication and data boundaries intact
+
+- The existing protected route behavior will be reused; no client-submitted user ID will be trusted.
+- No server route is needed for camera permission or preview.
+- No database migration is expected for the first UI-only camera milestone.
+- If a later task starts and persists a session, it must derive the user from the authenticated Supabase session and enforce existing RLS policies.
+
+## Recommended implementation order
+
+1. Add the `/session/new` page shell and protected-route behavior.
+2. Add localized labels and states.
+3. Add the explicit camera permission flow and local preview.
+4. Add cleanup and error handling.
+5. Add the region and display-name sidebar state.
+6. Validate camera-off, permission-denied, and successful-preview paths.
+
+This is one cohesive feature, but these steps provide internal checkpoints so a camera resource leak or permission regression is caught before moving on.
+
+## Validation plan
+
+### Static checks
+
+- Run `npm run typecheck`.
+- Run `npm run lint`.
+- Run `npm run build`.
+
+### Browser checks
+
+- Sign in and open `/session/new` from the dashboard.
+- Confirm an unauthenticated request to `/session/new` redirects to `/login`.
+- Confirm the page initially does not request the camera before the user clicks **Turn on camera**.
+- Allow camera access and confirm the local preview appears.
+- Confirm no microphone permission is requested.
+- Deny camera access and confirm a useful recovery message appears.
+- Turn the camera off and confirm the preview stops.
+- Navigate away and confirm camera tracks are stopped.
+- Enter region and display name values and confirm the UI retains them during the page session.
+- Verify both English and Indonesian copy.
+
+### Privacy checks
+
+- Confirm no raw image/video request is sent to the application or Supabase.
+- Confirm no raw frame or stream is placed in local storage, cookies, database payloads, or logs.
+- Confirm the browser permission is requested only from the explicit user action.
+
+## Expected files to change during implementation
+
+- `src/app/session/new/page.tsx`
+- `messages/en.json`
+- `messages/id.json`
+
+Potentially, only if validation identifies a routing or test gap:
+
+- `src/lib/supabase/proxy.ts`
+- Camera/session component test files
+- Browser E2E test files
+
+No database migration is expected for this first camera-preview implementation.
+
+## Assessment
+
+This approach is reasonable for the requested next feature because it delivers the visible camera experience without prematurely introducing peer video, raw media storage, or a session persistence contract. It also respects the repository’s privacy guardrail: camera data remains local, and only permission state/UI state is handled by the page.
