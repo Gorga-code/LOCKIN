@@ -68,6 +68,7 @@
     "or": "or",
     "noAccount": "No account yet?",
     "haveAccount": "Already have an account?",
+    "registrationSuccess": "Sign up successful. Please sign in to continue.",
     "checkEmail": "Account created. If email confirmation is enabled, check your inbox to finish signing up.",
     "errors": {
       "invalidCredentials": "Incorrect email or password.",

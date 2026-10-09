@@ -68,6 +68,7 @@
     "or": "atau",
     "noAccount": "Belum punya akun?",
     "haveAccount": "Sudah punya akun?",
+    "registrationSuccess": "Pendaftaran berhasil. Silakan masuk untuk melanjutkan.",
     "checkEmail": "Akun dibuat. Jika konfirmasi email aktif, cek kotak masukmu untuk menyelesaikan pendaftaran.",
     "errors": {
       "invalidCredentials": "Email atau kata sandi salah.",
