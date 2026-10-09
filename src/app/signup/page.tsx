@@ -46,11 +46,13 @@ export default function SignUpPage() {
       }
 
       if (data.session) {
-        router.push("/dashboard");
-        router.refresh();
-      } else {
-        setInfoMsg(t("checkEmail"));
+        const { error: signOutError } = await supabase.auth.signOut();
+        if (signOutError) {
+          throw signOutError;
+        }
       }
+
+      router.replace("/login?registered=1");
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : t("errors.generic");
       setErrorMsg(msg);

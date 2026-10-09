@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -13,13 +13,26 @@ export default function LoginPage() {
   const searchParams = useSearchParams();
   const next = searchParams.get("next") ?? "/dashboard";
   const errCode = searchParams.get("error");
+  const registered = searchParams.get("registered") === "1";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [infoMsg] = useState<string | null>(
+    registered ? t("registrationSuccess") : null,
+  );
   const [errorMsg, setErrorMsg] = useState<string | null>(
     errCode === "callback" ? t("errors.callback") : null,
   );
+
+  useEffect(() => {
+    if (!registered) return;
+
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("registered");
+    const query = params.toString();
+    router.replace(query ? `/login?${query}` : "/login", { scroll: false });
+  }, [registered, router, searchParams]);
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,6 +98,15 @@ export default function LoginPage() {
             </Link>
           </p>
         </div>
+
+        {infoMsg && (
+          <div
+            role="status"
+            className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-xs text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-300"
+          >
+            {infoMsg}
+          </div>
+        )}
 
         {errorMsg && (
           <div

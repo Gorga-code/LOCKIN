@@ -68,6 +68,7 @@
     "or": "atau",
     "noAccount": "Belum punya akun?",
     "haveAccount": "Sudah punya akun?",
+    "registrationSuccess": "Pendaftaran berhasil. Silakan masuk untuk melanjutkan.",
     "checkEmail": "Akun dibuat. Jika konfirmasi email aktif, cek kotak masukmu untuk menyelesaikan pendaftaran.",
     "errors": {
       "invalidCredentials": "Email atau kata sandi salah.",
@@ -82,6 +83,35 @@
     "greeting": "Halo! Siap mulai sesi?",
     "startCta": "Mulai sesi baru",
     "historyCta": "Lihat riwayat"
+  },
+  "session": {
+    "title": "Mulai sesi baru",
+    "subtitle": "Siapkan kamera lokal dan preferensi sesimu sebelum mulai.",
+    "back": "Kembali ke beranda",
+    "camera": {
+      "title": "Pratinjau kamera",
+      "description": "Kameramu tetap di perangkat ini. Nyalakan saat kamu siap.",
+      "previewLabel": "Pratinjau kamera lokal",
+      "privacy": "Video diproses secara lokal dan tidak pernah diunggah.",
+      "turnOn": "Nyalakan kamera",
+      "turnOff": "Matikan kamera",
+      "requesting": "Meminta akses kamera…",
+      "permissionDenied": "Akses kamera ditolak. Izinkan akses kamera untuk localhost di pengaturan situs Chrome, lalu coba lagi.",
+      "unavailable": "Kamera tidak tersedia atau browser ini tidak mendukung akses kamera."
+    },
+    "options": {
+      "title": "Opsi sesi",
+      "description": "Preferensi ini sementara disimpan di halaman ini.",
+      "region": "Wilayah",
+      "selectRegion": "Pilih wilayah",
+      "displayName": "Nama tampilan",
+      "displayNamePlaceholder": "Masukkan nama tampilan",
+      "regions": {
+        "indonesiaWest": "Indonesia — Barat",
+        "indonesiaCentral": "Indonesia — Tengah",
+        "indonesiaEast": "Indonesia — Timur"
+      }
+    }
   },
   "coach": {
     "title": "AI Coach",
