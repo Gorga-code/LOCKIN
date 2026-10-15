@@ -111,6 +111,45 @@
         "indonesiaCentral": "Indonesia — Tengah",
         "indonesiaEast": "Indonesia — Timur"
       }
+    },
+    "modes": {
+      "title": "Mau belajar dengan cara apa?",
+      "solo": "Mulai sesi solo",
+      "soloDescription": "Belajar sendiri dengan daftar tugas dan timer.",
+      "online": "Belajar bareng orang lain",
+      "onlineDescription": "Temukan pengguna LOCKIN lain yang sedang online."
+    },
+    "solo": {
+      "title": "Sesi solo",
+      "subtitle": "Simpan daftar tugasmu di depan mata. Jeda tidak dihitung sebagai waktu sesi.",
+      "cameraTitle": "Nyalakan kameramu",
+      "cameraPrompt": "Nyalakan kamera untuk sesi ini. Video tetap di perangkat ini dan tidak pernah diunggah.",
+      "timer": {
+        "label": "Waktu sesi tercatat",
+        "paused": "Dijeda"
+      },
+      "pause": "Jeda",
+      "resume": "Lanjutkan",
+      "stop": "Berhenti",
+      "stopConfirm": "Akhiri sesi ini? Timer akan berhenti.",
+      "tasks": {
+        "title": "Tugas",
+        "inputLabel": "Tugas baru",
+        "placeholder": "Tambah tugas…",
+        "add": "Tambah",
+        "empty": "Belum ada tugas. Tambahkan apa yang ingin kamu kerjakan di sesi ini.",
+        "progress": "{done} dari {total} selesai",
+        "delete": "Hapus tugas: {title}"
+      },
+      "summary": {
+        "title": "Sesi selesai",
+        "recordedTime": "Waktu sesi tercatat",
+        "tasksDone": "{done} dari {total} tugas dicentang",
+        "backHome": "Kembali ke beranda",
+        "saving": "Menyimpan sesimu ke riwayat…",
+        "saveFailed": "Sesi ini gagal disimpan. Periksa koneksimu lalu coba lagi.",
+        "retry": "Coba lagi"
+      }
     }
   },
   "coach": {
@@ -130,5 +169,39 @@
     "notFoundBody": "Halaman yang kamu cari tidak ada atau sudah dihapus.",
     "genericTitle": "Terjadi kesalahan",
     "genericBody": "Ada yang tidak beres. Silakan coba lagi."
+  },
+  "history": {
+    "title": "Riwayat",
+    "subtitle": "Sesi-sesi yang sudah selesai. Hanya kamu yang bisa melihatnya.",
+    "empty": "Belum ada sesi. Selesaikan satu sesi dan sesi itu akan muncul di sini.",
+    "startSession": "Mulai sesi",
+    "untitled": "Sesi solo",
+    "taskCount": "{done}/{total} tugas",
+    "pauseCount": "{count, plural, =0 {Tanpa jeda} other {# jeda}}",
+    "detail": {
+      "back": "Kembali ke riwayat",
+      "rename": "Ganti nama",
+      "nameLabel": "Nama sesi",
+      "save": "Simpan",
+      "cancel": "Batal",
+      "saving": "Menyimpan…",
+      "saved": "Tersimpan",
+      "saveFailed": "Gagal menyimpan. Silakan coba lagi.",
+      "recordedTime": "Waktu sesi tercatat",
+      "pauses": "Jeda",
+      "pausesValue": "{count, plural, =0 {Tanpa jeda} other {# jeda}} · dijeda {duration}",
+      "started": "Dimulai",
+      "ended": "Selesai",
+      "cameraOn": "Kamera menyala selama sesi ini",
+      "cameraOff": "Kamera mati selama sesi ini",
+      "disclaimer": "Waktu sesi tercatat tidak termasuk jeda. Ini bukan bukti fokus atau produktivitas.",
+      "tasks": "Tugas",
+      "noTasks": "Tidak ada tugas yang ditambahkan di sesi ini.",
+      "taskDone": "Selesai",
+      "taskNotDone": "Belum selesai",
+      "note": "Catatan",
+      "notePlaceholder": "Bagaimana sesi ini? Apa yang ingin kamu ubah lain kali?",
+      "saveNote": "Simpan catatan"
+    }
   }
 }

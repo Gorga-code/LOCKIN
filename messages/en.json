@@ -111,6 +111,45 @@
         "indonesiaCentral": "Indonesia — Central",
         "indonesiaEast": "Indonesia — Eastern"
       }
+    },
+    "modes": {
+      "title": "How do you want to study?",
+      "solo": "Start solo session",
+      "soloDescription": "Work on your own with a task list and timer.",
+      "online": "Study with others",
+      "onlineDescription": "Find other people using LOCKIN online."
+    },
+    "solo": {
+      "title": "Solo session",
+      "subtitle": "Keep your task list in view. Pauses are not counted as session time.",
+      "cameraTitle": "Turn on your camera",
+      "cameraPrompt": "Turn on your camera for this session. Video stays on this device and is never uploaded.",
+      "timer": {
+        "label": "Recorded session time",
+        "paused": "Paused"
+      },
+      "pause": "Pause",
+      "resume": "Resume",
+      "stop": "Stop",
+      "stopConfirm": "End this session? The timer will stop.",
+      "tasks": {
+        "title": "Tasks",
+        "inputLabel": "New task",
+        "placeholder": "Add a task…",
+        "add": "Add",
+        "empty": "No tasks yet. Add what you plan to work on during this session.",
+        "progress": "{done} of {total} done",
+        "delete": "Delete task: {title}"
+      },
+      "summary": {
+        "title": "Session ended",
+        "recordedTime": "Recorded session time",
+        "tasksDone": "{done} of {total} tasks checked off",
+        "backHome": "Back to home",
+        "saving": "Saving your session to history…",
+        "saveFailed": "We couldn't save this session. Check your connection and try again.",
+        "retry": "Try again"
+      }
     }
   },
   "coach": {
@@ -130,5 +169,39 @@
     "notFoundBody": "The page you're looking for doesn't exist or was removed.",
     "genericTitle": "Something went wrong",
     "genericBody": "Something didn't work. Please try again."
+  },
+  "history": {
+    "title": "History",
+    "subtitle": "Your finished sessions. Only you can see them.",
+    "empty": "No sessions yet. Finish a session and it will show up here.",
+    "startSession": "Start a session",
+    "untitled": "Solo session",
+    "taskCount": "{done}/{total} tasks",
+    "pauseCount": "{count, plural, =0 {No pauses} one {# pause} other {# pauses}}",
+    "detail": {
+      "back": "Back to history",
+      "rename": "Rename",
+      "nameLabel": "Session name",
+      "save": "Save",
+      "cancel": "Cancel",
+      "saving": "Saving…",
+      "saved": "Saved",
+      "saveFailed": "Couldn't save. Please try again.",
+      "recordedTime": "Recorded session time",
+      "pauses": "Pauses",
+      "pausesValue": "{count, plural, =0 {No pauses} one {# pause} other {# pauses}} · {duration} paused",
+      "started": "Started",
+      "ended": "Ended",
+      "cameraOn": "Camera was on during this session",
+      "cameraOff": "Camera was off during this session",
+      "disclaimer": "Recorded session time excludes pauses. It is not proof of focus or productivity.",
+      "tasks": "Tasks",
+      "noTasks": "No tasks were added in this session.",
+      "taskDone": "Done",
+      "taskNotDone": "Not done",
+      "note": "Note",
+      "notePlaceholder": "How did this session go? What would you change next time?",
+      "saveNote": "Save note"
+    }
   }
 }

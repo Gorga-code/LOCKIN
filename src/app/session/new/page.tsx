@@ -1,65 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
-
-type CameraStatus = "idle" | "requesting" | "ready" | "denied" | "unavailable";
+import { useLocalCamera } from "@/lib/camera/useLocalCamera";
 
 export default function NewSessionPage() {
   const t = useTranslations("session");
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const streamRef = useRef<MediaStream | null>(null);
-  const [cameraStatus, setCameraStatus] = useState<CameraStatus>("idle");
+  const commonT = useTranslations("common");
+  const { videoRef, status: cameraStatus, start: startCamera, stop: stopCamera } = useLocalCamera();
   const [region, setRegion] = useState("");
   const [displayName, setDisplayName] = useState("");
-
-  const stopCamera = () => {
-    streamRef.current?.getTracks().forEach((track) => track.stop());
-    streamRef.current = null;
-    if (videoRef.current) {
-      videoRef.current.srcObject = null;
-    }
-    setCameraStatus("idle");
-  };
-
-  const startCamera = async () => {
-    if (!navigator.mediaDevices?.getUserMedia) {
-      setCameraStatus("unavailable");
-      return;
-    }
-
-    setCameraStatus("requesting");
-
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: false,
-        video: true,
-      });
-      streamRef.current = stream;
-
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        await videoRef.current.play();
-      }
-
-      setCameraStatus("ready");
-    } catch (error) {
-      streamRef.current?.getTracks().forEach((track) => track.stop());
-      streamRef.current = null;
-      setCameraStatus(
-        error instanceof DOMException && error.name === "NotAllowedError"
-          ? "denied"
-          : "unavailable",
-      );
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      streamRef.current?.getTracks().forEach((track) => track.stop());
-    };
-  }, []);
 
   const cameraMessage =
     cameraStatus === "denied"
@@ -129,7 +80,9 @@ export default function NewSessionPage() {
           </section>
 
           <aside className="rounded-2xl border border-zinc-200/80 bg-white p-6 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900">
-            <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">{t("options.title")}</h2>
+            <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
+              {t("options.title")}
+            </h2>
             <p className="mt-1 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
               {t("options.description")}
             </p>
@@ -171,6 +124,37 @@ export default function NewSessionPage() {
                   placeholder={t("options.displayNamePlaceholder")}
                   className="mt-1 block w-full rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs text-zinc-900 focus:border-zinc-900 focus:outline-hidden dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100 dark:focus:border-zinc-100"
                 />
+              </div>
+            </div>
+
+            <div className="mt-8 border-t border-zinc-200/80 pt-6 dark:border-zinc-800/80">
+              <h2 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
+                {t("modes.title")}
+              </h2>
+              <div className="mt-4 space-y-3">
+                <Link
+                  href="/session/solo"
+                  className="block rounded-xl bg-zinc-900 px-4 py-3 text-left text-white shadow-xs hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-100"
+                >
+                  <span className="block text-sm font-semibold">{t("modes.solo")}</span>
+                  <span className="mt-0.5 block text-[11px] opacity-70">
+                    {t("modes.soloDescription")}
+                  </span>
+                </Link>
+                <button
+                  type="button"
+                  disabled
+                  aria-disabled="true"
+                  className="block w-full cursor-not-allowed rounded-xl border border-zinc-200 px-4 py-3 text-left text-zinc-500 dark:border-zinc-800 dark:text-zinc-400"
+                >
+                  <span className="flex items-center gap-2 text-sm font-semibold">
+                    {t("modes.online")}
+                    <span className="rounded-full bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold text-amber-800 dark:bg-amber-950/80 dark:text-amber-300">
+                      {commonT("comingSoon")}
+                    </span>
+                  </span>
+                  <span className="mt-0.5 block text-[11px]">{t("modes.onlineDescription")}</span>
+                </button>
               </div>
             </div>
           </aside>
