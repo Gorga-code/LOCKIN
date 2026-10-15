@@ -24,3 +24,9 @@
 - **Status**: Accepted
 - **Context**: Camera monitoring for presence and phone detection must operate locally without streaming video to external servers.
 - **Decision**: MediaPipe Tasks Vision Web Worker. Presence via MediaPipe Face Detector; phone detection via Object Detector with COCO labels including "cell phone" (Apache 2.0 license).
+
+## D-006: Solo sessions saved on stop, with a task list instead of a single goal
+- **Status**: Accepted
+- **Context**: The solo session flow uses a task list and an open-ended timer, not one task goal and a planned duration. History must show tasks, recorded time, pauses, start time, and a user-editable name and note.
+- **Decision**: Make `sessions.task_goal` and `sessions.planned_seconds` optional, add `sessions.title` and `sessions.note`, and add an RLS-protected `session_tasks` table. A finished session is sent once to `POST /api/sessions`; the server derives recorded time from the start/end/pause timestamps rather than trusting the client timer. Renaming and notes go through `PATCH /api/sessions/[id]`.
+- **Trade-off**: A session closed without pressing Stop (tab closed, crash) is not saved. Server-tracked start/pause/resume can replace this later.
