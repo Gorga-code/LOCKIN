@@ -5,11 +5,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import { useTranslations } from "next-intl";
 import { useLocalCamera } from "@/lib/camera/useLocalCamera";
+import { FacePresence } from "@/components/FacePresence";
+import { publicEnv } from "@/lib/env";
 import { formatDuration } from "@/lib/sessions/format";
 import type { RecordSessionInput } from "@/lib/sessions/schemas";
+import type { VisionSummary } from "@/lib/vision/types";
 
 type SessionStatus = "running" | "paused" | "ended";
-type SaveStatus = "saving" | "error";
+type SaveStatus = "saving" | "error" | "local";
 
 type Task = {
   id: string;
@@ -33,6 +36,11 @@ export default function SoloSessionPage() {
   const [cameraUsed, setCameraUsed] = useState(false);
   const [record, setRecord] = useState<RecordSessionInput | null>(null);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>("saving");
+  const [videoAspect, setVideoAspect] = useState(16 / 9);
+  const [visionSummary, setVisionSummary] = useState<VisionSummary>({
+    awaySeconds: 0,
+    eyeClosureAlerts: 0,
+  });
 
   const [sessionStatus, setSessionStatus] = useState<SessionStatus>("running");
   // Active time is accumulated across runs; pauses are excluded from the recorded time.
@@ -91,6 +99,10 @@ export default function SoloSessionPage() {
   };
 
   const saveSession = async (payload: RecordSessionInput) => {
+    if (!publicEnv.supabaseUrl || !publicEnv.supabaseAnonKey) {
+      setSaveStatus("local");
+      return;
+    }
     setSaveStatus("saving");
     try {
       const response = await fetch("/api/sessions", {
@@ -166,7 +178,26 @@ export default function SoloSessionPage() {
           <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-300">
             {t("summary.tasksDone", { done: doneCount, total: tasks.length })}
           </p>
-          {saveStatus === "saving" ? (
+          <div className="mt-4 space-y-1 text-xs text-zinc-500 dark:text-zinc-400">
+            <p data-testid="away-summary">
+              {t("summary.awayTime", { duration: formatDuration(visionSummary.awaySeconds) })}
+            </p>
+            <p>{t("summary.eyeAlerts", { count: visionSummary.eyeClosureAlerts })}</p>
+            <p>{t("summary.monitoringLocal")}</p>
+          </div>
+          {saveStatus === "local" ? (
+            <div className="mt-8">
+              <p className="text-xs text-zinc-500 dark:text-zinc-400" role="status">
+                {t("summary.localOnly")}
+              </p>
+              <Link
+                href="/dashboard"
+                className="mt-4 inline-block rounded-xl bg-zinc-900 px-4 py-2.5 text-xs font-semibold text-white dark:bg-white dark:text-zinc-950"
+              >
+                {t("summary.backHome")}
+              </Link>
+            </div>
+          ) : saveStatus === "saving" ? (
             <p className="mt-8 text-xs text-zinc-500 dark:text-zinc-400" role="status">
               {t("summary.saving")}
             </p>
@@ -248,12 +279,20 @@ export default function SoloSessionPage() {
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_22rem]">
           <section className="rounded-2xl border border-zinc-200/80 bg-zinc-900 p-4 shadow-xs dark:border-zinc-800/80">
-            <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-xl bg-zinc-950">
+            <div
+              className="relative flex items-center justify-center overflow-hidden rounded-xl bg-zinc-950"
+              style={{ aspectRatio: videoAspect }}
+            >
               <video
                 ref={videoRef}
                 className={`h-full w-full object-cover ${cameraStatus === "ready" ? "block" : "hidden"}`}
                 muted
                 playsInline
+                onLoadedMetadata={(event) => {
+                  const video = event.currentTarget;
+                  if (video.videoWidth && video.videoHeight)
+                    setVideoAspect(video.videoWidth / video.videoHeight);
+                }}
                 aria-label={cameraT("previewLabel")}
               />
               {cameraStatus !== "ready" && (
@@ -273,6 +312,12 @@ export default function SoloSessionPage() {
                   </button>
                 </div>
               )}
+              <FacePresence
+                videoRef={videoRef}
+                cameraReady={cameraStatus === "ready"}
+                running={sessionStatus === "running"}
+                onSummaryChange={setVisionSummary}
+              />
             </div>
 
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3">

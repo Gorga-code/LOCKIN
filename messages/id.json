@@ -148,7 +148,35 @@
         "backHome": "Kembali ke beranda",
         "saving": "Menyimpan sesimu ke riwayat…",
         "saveFailed": "Sesi ini gagal disimpan. Periksa koneksimu lalu coba lagi.",
-        "retry": "Coba lagi"
+        "retry": "Coba lagi",
+        "localOnly": "Mode pratinjau: sesi ini tidak disimpan karena database belum dihubungkan.",
+        "awayTime": "Total waktu di luar tampilan kamera: {duration}",
+        "eyeAlerts": "Pengingat mata tertutup: {count}",
+        "monitoringLocal": "Perkiraan kamera hanya ditampilkan untuk sesi ini."
+      },
+      "detection": {
+        "off": "Deteksi wajah mati",
+        "paused": "Deteksi dijeda",
+        "hidden": "Deteksi dijeda saat tab tidak terlihat",
+        "loading": "Memuat detektor wajah…",
+        "checking": "Menunggu gambar kamera…",
+        "present": "Wajah terdeteksi ({count})",
+        "waiting": "Wajah tidak terdeteksi selama {seconds} detik",
+        "absent": "Wajah tidak terdeteksi selama {seconds} detik",
+        "error": "Deteksi wajah tidak tersedia",
+        "retry": "Coba deteksi lagi",
+        "errorHelp": "Detektor lokal gagal dimuat. Coba lagi, atau lanjutkan dengan pratinjau kamera saja.",
+        "reminder": "Wajahmu di luar tampilan kamera. Kalau sedang istirahat, jeda sesinya dulu.",
+        "disclaimer": "Perkiraan dari wajah dan kelopak mata yang terlihat. Ini tidak memastikan tidur atau perhatian.",
+        "awayNow": "Sedang di luar tampilan kamera",
+        "awayTotal": "Total sesi: {duration}",
+        "eyes": {
+          "open": "Mata terlihat terbuka",
+          "closed": "Mata terlihat tertutup",
+          "unknown": "Mata belum dapat dinilai"
+        },
+        "eyeAlerts": "{count} pengingat mata tertutup",
+        "eyesReminder": "Mata terlihat tertutup selama {seconds} detik. Buka mata atau jeda sesi untuk istirahat."
       }
     }
   },
