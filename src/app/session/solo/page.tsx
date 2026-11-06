@@ -9,7 +9,7 @@ import { FacePresence } from "@/components/FacePresence";
 import { publicEnv } from "@/lib/env";
 import { formatDuration } from "@/lib/sessions/format";
 import type { RecordSessionInput } from "@/lib/sessions/schemas";
-import type { VisionSummary } from "@/lib/vision/types";
+import type { VisionSummary } from "@ai/types";
 
 type SessionStatus = "running" | "paused" | "ended";
 type SaveStatus = "saving" | "error" | "local";
@@ -295,6 +295,7 @@ export default function SoloSessionPage() {
                 }}
                 aria-label={cameraT("previewLabel")}
               />
+    
               {cameraStatus !== "ready" && (
                 <div className="max-w-sm px-6 text-center text-zinc-300">
                   <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-800 text-2xl">

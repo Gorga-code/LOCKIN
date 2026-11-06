@@ -158,25 +158,25 @@
         "off": "Face detection off",
         "paused": "Detection paused",
         "hidden": "Detection paused while this tab is hidden",
-        "loading": "Loading face detector…",
+        "loading": "Loading face and eye detector…",
         "checking": "Waiting for a camera frame…",
         "present": "Face detected ({count})",
         "waiting": "No face detected for {seconds}s",
         "absent": "No face detected for {seconds}s",
         "error": "Face detection unavailable",
         "retry": "Retry detection",
-        "errorHelp": "The local detector could not load. Retry, or continue with camera preview only.",
-        "reminder": "Your face is outside the camera view. If you are taking a break, pause the session.",
-        "disclaimer": "Estimates from visible faces and eyelids. This does not confirm sleep or attention.",
         "awayNow": "Currently out of camera view",
         "awayTotal": "Session total: {duration}",
         "eyes": {
           "open": "Eyes appear open",
           "closed": "Eyes appear closed",
-          "unknown": "Eyes not assessable"
+          "unknown": "Eyes cannot be assessed"
         },
         "eyeAlerts": "{count, plural, one {# eye-closure reminder} other {# eye-closure reminders}}",
-        "eyesReminder": "Your eyes appear closed for {seconds} seconds. Open your eyes or pause for a break."
+        "reminder": "Your face is outside the camera view. If you are taking a break, pause the session.",
+        "eyesReminder": "Your eyes have appeared closed for at least {seconds} seconds. Open your eyes or pause for a break.",
+        "errorHelp": "The local detector could not load. Retry, or continue with camera preview only.",
+        "disclaimer": "Estimates from visible faces and eyelids. This does not confirm sleep or attention."
       }
     }
   },
