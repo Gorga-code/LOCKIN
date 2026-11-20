@@ -155,6 +155,12 @@
         "monitoringLocal": "Perkiraan kamera hanya ditampilkan untuk sesi ini."
       },
       "detection": {
+        "phone": {
+          "loading": "Memuat deteksi HPâ€¦",
+          "clear": "HP tidak terdeteksi",
+          "detected": "HP terdeteksi di kamera",
+          "error": "Deteksi HP tidak tersedia"
+        },
           "off": "Deteksi wajah mati",
           "paused": "Deteksi dijeda",
           "hidden": "Deteksi dijeda saat tab tidak terlihat",

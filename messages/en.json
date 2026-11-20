@@ -155,6 +155,12 @@
         "monitoringLocal": "Camera estimates are shown for this session only."
       },
       "detection": {
+        "phone": {
+          "loading": "Loading phone detectionâ€¦",
+          "clear": "No phone detected",
+          "detected": "Phone detected in view",
+          "error": "Phone detection unavailable"
+        },
         "off": "Face detection off",
         "paused": "Detection paused",
         "hidden": "Detection paused while this tab is hidden",

@@ -105,6 +105,15 @@ run the real model on a portrait and blank frame; controlled eye coefficients te
 the 10-second UI behavior. Actual closed-eye performance on your Windows webcam
 must be checked locally. This is a study-session reminder, not a sleep measurement.
 
+## Phone detection
+
+During a running solo session, the camera overlay displays whether a phone is
+visible and outlines the strongest detection. It uses the MediaPipe Object
+Detector with the EfficientDet-Lite2 model and its COCO cell phone label.
+Run npm run vision:setup to download the model. Keep a well-lit phone clearly
+in view for a quick test. The status describes camera detections and can miss
+small or partially hidden phones. Frames and phone results stay on the device.
+
 ## Troubleshooting
 
 Use Chrome or Edge with localhost/HTTPS. Allow camera access in browser site settings.
