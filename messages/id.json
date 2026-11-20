@@ -112,6 +112,25 @@
         "indonesiaEast": "Indonesia — Timur"
       }
     },
+        "extension": {
+      "title": "Ekstensi Chrome",
+      "description": "Pilih tab yang ingin kamu tutup sebelum memulai sesi.",
+      "install": "Pasang ekstensi",
+      "installSteps": "Buka <code>chrome://extensions</code>, aktifkan Mode developer, pilih Load unpacked, lalu pilih folder <code>extension</code> di proyek ini.",
+      "connect": "Hubungkan ekstensi",
+      "refresh": "Muat ulang tab",
+      "tabList": "Tab Chrome yang terbuka",
+      "empty": "Tidak ada tab lain yang terbuka.",
+      "untitled": "Tab tanpa judul",
+      "working": "Menunggu Chrome…",
+      "unavailable": "Ekstensi belum terhubung. Muat ekstensi di Chrome dan buka LOCKIN di port 3000, lalu coba lagi.",
+      "close": "Tutup pilihan ({count})",
+      "confirm": "Tutup {count} tab Chrome yang dipilih?",
+      "closed": "{count} tab ditutup.",
+      "partial": "{closed} tab ditutup dan {skipped} tab dilewati. Muat ulang daftar untuk memeriksa tab.",
+      "closeError": "Status penutupan tab belum bisa dipastikan. Muat ulang daftar tab untuk mencoba lagi."
+    },
+
     "modes": {
       "title": "Mau belajar dengan cara apa?",
       "solo": "Mulai sesi solo",
