@@ -19,9 +19,12 @@
     "db:reset": "supabase db reset",
     "db:status": "supabase status",
     "ext:build": "npm --prefix extension run build",
-    "ext:test": "npm --prefix extension test"
+    "ext:test": "npm --prefix extension test",
+    "vision:setup": "node scripts/setup-vision.mjs",
+    "test:vision": "vitest run --config vitest.vision.config.mts"
   },
   "dependencies": {
+    "@mediapipe/tasks-vision": "0.10.32",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.117.3",
     "next": "16.4.0",
