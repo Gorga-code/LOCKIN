@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { useLocalCamera } from "@/lib/camera/useLocalCamera";
 import { FacePresence } from "@/components/FacePresence";
 import { publicEnv } from "@/lib/env";
+import { sendTabRequest } from "@/lib/extension/tabs";
 import { formatDuration } from "@/lib/sessions/format";
 import type { RecordSessionInput } from "@/lib/sessions/schemas";
 import type { VisionSummary } from "@ai/types";
@@ -50,8 +51,23 @@ export default function SoloSessionPage() {
 
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTask, setNewTask] = useState("");
+  const [lockedTabCount, setLockedTabCount] = useState(0);
 
   const elapsedMs = accumulatedMs + (runStartedAt !== null ? now - runStartedAt : 0);
+
+  useEffect(() => {
+    let active = true;
+    sendTabRequest({ action: "status" })
+      .then(({ lockedCount }) => {
+        if (active) setLockedTabCount(lockedCount);
+      })
+      .catch(() => {
+        // Extension is optional; ignore when unavailable.
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (sessionStatus !== "running") return;
@@ -124,6 +140,10 @@ export default function SoloSessionPage() {
     closeCurrentRun();
     stopCamera();
     setSessionStatus("ended");
+    setLockedTabCount(0);
+    void sendTabRequest({ action: "unlock" }).catch(() => {
+      // Extension may not be installed.
+    });
 
     const payload: RecordSessionInput = {
       startedAt: sessionStartedAt,
@@ -235,6 +255,14 @@ export default function SoloSessionPage() {
               {t("title")}
             </h1>
             <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">{t("subtitle")}</p>
+            {lockedTabCount > 0 && (
+              <p
+                role="status"
+                className="mt-2 inline-flex items-center rounded-full bg-amber-100 px-2.5 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-950/60 dark:text-amber-300"
+              >
+                {t("lockedTabs", { count: lockedTabCount })}
+              </p>
+            )}
           </div>
 
           <div className="flex items-center gap-3 rounded-2xl border border-zinc-200/80 bg-white p-3 shadow-xs dark:border-zinc-800/80 dark:bg-zinc-900">

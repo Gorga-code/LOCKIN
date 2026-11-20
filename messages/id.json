@@ -112,9 +112,9 @@
         "indonesiaEast": "Indonesia — Timur"
       }
     },
-        "extension": {
+    "extension": {
       "title": "Ekstensi Chrome",
-      "description": "Pilih tab yang ingin kamu tutup sebelum memulai sesi.",
+      "description": "Pilih tab yang ingin kamu kunci. Tab tetap terbuka tetapi langsung mengembalikanmu ke LOCKIN sampai sesi solo berakhir.",
       "install": "Pasang ekstensi",
       "installSteps": "Buka <code>chrome://extensions</code>, aktifkan Mode developer, pilih Load unpacked, lalu pilih folder <code>extension</code> di proyek ini.",
       "connect": "Hubungkan ekstensi",
@@ -124,11 +124,13 @@
       "untitled": "Tab tanpa judul",
       "working": "Menunggu Chrome…",
       "unavailable": "Ekstensi belum terhubung. Muat ekstensi di Chrome dan buka LOCKIN di port 3000, lalu coba lagi.",
-      "close": "Tutup pilihan ({count})",
-      "confirm": "Tutup {count} tab Chrome yang dipilih?",
-      "closed": "{count} tab ditutup.",
-      "partial": "{closed} tab ditutup dan {skipped} tab dilewati. Muat ulang daftar untuk memeriksa tab.",
-      "closeError": "Status penutupan tab belum bisa dipastikan. Muat ulang daftar tab untuk mencoba lagi."
+      "lock": "Kunci pilihan ({count})",
+      "lockedTag": "Terkunci",
+      "lockedBadge": "{count} terkunci",
+      "confirm": "Kunci {count} tab Chrome yang dipilih sampai sesi solo berakhir?",
+      "locked": "{count} tab dikunci sampai sesi solo berakhir.",
+      "partial": "{locked} tab dikunci dan {skipped} tab dilewati. Muat ulang daftar untuk memeriksa tab.",
+      "lockError": "Status penguncian tab belum bisa dipastikan. Muat ulang daftar tab untuk mencoba lagi."
     },
 
     "modes": {
@@ -151,6 +153,7 @@
       "resume": "Lanjutkan",
       "stop": "Berhenti",
       "stopConfirm": "Akhiri sesi ini? Timer akan berhenti.",
+      "lockedTabs": "{count} tab Chrome dikunci sampai sesi ini berakhir",
       "tasks": {
         "title": "Tugas",
         "inputLabel": "Tugas baru",

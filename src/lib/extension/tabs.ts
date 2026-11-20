@@ -8,14 +8,20 @@ export type OpenTab = {
   title: string;
   site: string;
   revision: string;
+  locked?: boolean;
 };
 
 type ExtensionRequest =
-  { action: "list" } | { action: "close"; tabs: Pick<OpenTab, "id" | "revision">[] };
+  | { action: "list" }
+  | { action: "lock"; tabs: Pick<OpenTab, "id" | "revision">[] }
+  | { action: "status" }
+  | { action: "unlock" };
 
 type ExtensionReply =
   | { action: "list"; tabs: OpenTab[] }
-  | { action: "close"; closedIds: number[] }
+  | { action: "lock"; lockedIds: number[]; lockedCount: number }
+  | { action: "status"; lockedCount: number }
+  | { action: "unlock"; unlocked: boolean }
   | { action: "error" };
 
 type ChromeRuntime = {
@@ -29,11 +35,17 @@ type ChromeRuntime = {
 
 export async function sendTabRequest(request: { action: "list" }): Promise<OpenTab[]>;
 export async function sendTabRequest(
-  request: Extract<ExtensionRequest, { action: "close" }>,
-): Promise<number[]>;
+  request: Extract<ExtensionRequest, { action: "lock" }>,
+): Promise<{ lockedIds: number[]; lockedCount: number }>;
+export async function sendTabRequest(request: {
+  action: "status";
+}): Promise<{ lockedCount: number }>;
+export async function sendTabRequest(request: { action: "unlock" }): Promise<boolean>;
 export async function sendTabRequest(request: ExtensionRequest) {
   const runtime = (window as Window & { chrome?: { runtime?: ChromeRuntime } }).chrome?.runtime;
-  return new Promise<OpenTab[] | number[]>((resolve, reject) => {
+  return new Promise<
+    OpenTab[] | { lockedIds: number[]; lockedCount: number } | { lockedCount: number } | boolean
+  >((resolve, reject) => {
     if (!runtime?.sendMessage) {
       reject(new Error("The Chrome extension is unavailable"));
       return;
@@ -45,7 +57,15 @@ export async function sendTabRequest(request: ExtensionRequest) {
         return;
       }
 
-      resolve(response.action === "list" ? response.tabs : response.closedIds);
+      if (response.action === "list") {
+        resolve(response.tabs);
+      } else if (response.action === "lock") {
+        resolve({ lockedIds: response.lockedIds, lockedCount: response.lockedCount });
+      } else if (response.action === "status") {
+        resolve({ lockedCount: response.lockedCount });
+      } else if (response.action === "unlock") {
+        resolve(response.unlocked);
+      }
     });
   });
 }

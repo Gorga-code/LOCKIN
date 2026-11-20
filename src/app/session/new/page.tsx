@@ -128,6 +128,8 @@ export default function NewSessionPage() {
               </div>
             </div>
 
+            <SessionTabControls />
+
             <div className="mt-8 border-t border-zinc-200/80 pt-6 dark:border-zinc-800/80">
               <h2 className="text-sm font-bold text-zinc-900 dark:text-zinc-100">
                 {t("modes.title")}
