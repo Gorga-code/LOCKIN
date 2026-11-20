@@ -11,6 +11,7 @@ import {
   FACE_GRACE_MS,
   FRAME_INTERVAL_MS,
   type FaceBox,
+  type PhoneSample,
   type VisionCommand,
   type VisionMessage,
 } from "@ai/types";
@@ -24,6 +25,8 @@ import {
   type TrackingState,
 } from "@ai/tracking";
 
+const pendingPhone: PhoneSample = { status: "loading", box: null };
+
 type DetectionState = {
   status:
     | "loading"
@@ -35,6 +38,7 @@ type DetectionState = {
 
   boxes: FaceBox[];
   tracking: TrackingState;
+  phone: PhoneSample;
 };
 
 export function useFacePresence(
@@ -45,6 +49,7 @@ export function useFacePresence(
     status: "loading",
     boxes: [],
     tracking: createTrackingState(),
+    phone: pendingPhone,
   });
 
   const [visible, setVisible] = useState(true);
@@ -94,6 +99,7 @@ export function useFacePresence(
       status: "loading",
       boxes: [],
       tracking: trackingRef.current,
+      phone: pendingPhone,
     });
 
     // Stop processing if loading or inference fails.
@@ -114,6 +120,7 @@ export function useFacePresence(
         status: "error",
         boxes: [],
         tracking: trackingRef.current,
+        phone: pendingPhone,
       });
 
       disposed = true;
@@ -149,6 +156,7 @@ export function useFacePresence(
             status: "checking",
             boxes: [],
             tracking: trackingRef.current,
+            phone: pendingPhone,
           });
         }
 
@@ -233,6 +241,7 @@ export function useFacePresence(
             status: "checking",
             boxes: [],
             tracking: trackingRef.current,
+            phone: pendingPhone,
           });
 
           void sendFrame();
@@ -259,6 +268,7 @@ export function useFacePresence(
 
           boxes: data.boxes,
           tracking,
+          phone: data.phone ?? pendingPhone,
         });
 
         // Schedule only after the previous result.
@@ -300,6 +310,7 @@ export function useFacePresence(
     status: state.status,
     boxes: state.boxes,
     visible,
+    phone: state.phone,
 
     absentSeconds: Math.floor(
       state.tracking.awayMs / 1_000,

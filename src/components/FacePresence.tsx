@@ -33,6 +33,7 @@ export function FacePresence({
     eyeState,
     eyeAlert,
     eyeClosureAlerts,
+    phone,
     visible,
     retry,
   } = useFacePresence(
@@ -47,6 +48,10 @@ export function FacePresence({
       : !visible
         ? "hidden"
         : status;
+
+  const showPhoneStatus =
+    cameraReady && running && visible && mode !== "error";
+  const phoneBox = showPhoneStatus ? phone.box : null;
 
   const absentAlert = mode === "absent";
 
@@ -94,6 +99,32 @@ export function FacePresence({
             }}
           />
         ))}
+
+      {phoneBox && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute rounded-lg border-2 border-amber-400"
+          style={{
+            left: `${phoneBox.x * 100}%`,
+            top: `${phoneBox.y * 100}%`,
+            width: `${phoneBox.width * 100}%`,
+            height: `${phoneBox.height * 100}%`,
+          }}
+        />
+      )}
+
+      {showPhoneStatus && (
+        <p
+          role="status"
+          className={`pointer-events-none absolute left-3 top-3 rounded-lg px-2.5 py-1 text-xs font-semibold ${
+            phone.status === "detected"
+              ? "bg-amber-300 text-zinc-950"
+              : "bg-black/75 text-white"
+          }`}
+        >
+          {t(`phone.${phone.status}`)}
+        </p>
+      )}
 
       {/* Detection information at the bottom of the video. */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 to-black/0 px-4 pb-4 pt-12">

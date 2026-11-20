@@ -19,17 +19,19 @@ const runtimeFolder = path.join(
 const publicFolder = path.join(root, "public");
 const outputFolder = path.join(publicFolder, "mediapipe");
 
-const modelPath = path.join(
-  publicFolder,
-  "models/face_landmarker.task",
-);
-
-const modelUrl =
-  "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task";
-
-// Verify that the downloaded model is the expected file.
-const expectedHash =
-  "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff";
+const modelFolder = path.join(publicFolder, "models");
+const models = [
+  {
+    name: "face_landmarker.task",
+    url: "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task",
+    hash: "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
+  },
+  {
+    name: "efficientdet_lite2.tflite",
+    url: "https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite2/float32/1/efficientdet_lite2.tflite",
+    hash: "ad2abbf2b4e10585e15176fd7b5ef03c28dda959ae26fc142549fdd1814db91d",
+  },
+];
 
 function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
@@ -40,7 +42,7 @@ await mkdir(path.join(outputFolder, "wasm"), {
   recursive: true,
 });
 
-await mkdir(path.dirname(modelPath), {
+await mkdir(modelFolder, {
   recursive: true,
 });
 
@@ -72,33 +74,28 @@ for (const filename of wasmFiles) {
   );
 }
 
-// Reuse the model if it is already downloaded and valid.
-let modelBytes;
+// Reuse each model if the existing download matches the expected checksum.
+for (const model of models) {
+  const modelPath = path.join(modelFolder, model.name);
+  const existing = await readFile(modelPath).catch((error) => {
+    if (error.code !== "ENOENT") throw error;
+    return null;
+  });
+  if (existing && sha256(existing) === model.hash) continue;
 
-try {
-  modelBytes = await readFile(modelPath);
-} catch {
-  // The first setup will download it below.
-}
-
-if (!modelBytes || sha256(modelBytes) !== expectedHash) {
-  console.log("Downloading the face/eye model (about 3.8 MB)...");
-
-  const response = await fetch(modelUrl, {
+  console.log("Downloading " + model.name + "...");
+  const response = await fetch(model.url, {
     signal: AbortSignal.timeout(60_000),
   });
-
   if (!response.ok) {
-    throw new Error(`Model download failed: HTTP ${response.status}`);
+    throw new Error(model.name + " download failed: HTTP " + response.status);
   }
 
-  modelBytes = Buffer.from(await response.arrayBuffer());
-
-  if (sha256(modelBytes) !== expectedHash) {
-    throw new Error("Model verification failed. Please run setup again.");
+  const modelBytes = Buffer.from(await response.arrayBuffer());
+  if (sha256(modelBytes) !== model.hash) {
+    throw new Error(model.name + " verification failed. Please run setup again.");
   }
-
   await writeFile(modelPath, modelBytes);
 }
 
-console.log("AI model, worker, and runtime are ready.");
+console.log("AI models, worker, and runtime are ready.");

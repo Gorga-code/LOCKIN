@@ -33,6 +33,10 @@ export type VisionCommand =
       timestamp: number;
     };
 
+export type PhoneSample =
+  | { status: "loading" | "clear" | "error"; box: null }
+  | { status: "detected"; box: FaceBox };
+
 // Results sent back by the AI worker.
 export type VisionMessage =
   | { type: "ready" }
@@ -40,5 +44,6 @@ export type VisionMessage =
       type: "result";
       boxes: FaceBox[];
       eyes: EyeScores | null;
+      phone: PhoneSample;
     }
   | { type: "error" };

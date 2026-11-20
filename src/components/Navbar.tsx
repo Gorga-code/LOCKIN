@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -27,9 +28,14 @@ export function Navbar({ userEmail }: NavbarProps) {
         {/* Brand */}
         <div className="flex items-center gap-8">
           <Link href="/" className="group flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-zinc-900 text-white font-bold tracking-wider shadow-sm transition-transform group-hover:scale-105 dark:bg-white dark:text-zinc-950">
-              L
-            </div>
+            <Image
+              src="/logo.png"
+              alt="LOCKIN logo"
+              width={36}
+              height={36}
+              priority
+              className="h-9 w-9 rounded-xl object-cover shadow-sm transition-transform group-hover:scale-105"
+            />
             <div className="flex flex-col">
               <span className="font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 text-base leading-tight">
                 LOCKIN

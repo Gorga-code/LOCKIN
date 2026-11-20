@@ -3,6 +3,57 @@
 // writes its public API into `exports`; this tiny shim avoids CDN imports/eval.
 self.exports = {};
 let detector = null;
+let phoneDetector = null;
+let phone = { status: "loading", box: null };
+let lastPhoneSample = -Infinity;
+let lastPhoneHit = -Infinity;
+let lastPhoneBox = null;
+// Keep the last detection briefly so one missed frame does not make the status flicker.
+const phoneHoldMs = 2000;
+const phoneIntervalMs = 400;
+
+async function loadPhoneDetector(files) {
+  try {
+    phoneDetector = await self.exports.ObjectDetector.createFromOptions(files, {
+      baseOptions: {
+        modelAssetPath: "/models/efficientdet_lite2.tflite",
+        delegate: "CPU",
+      },
+      runningMode: "VIDEO",
+      categoryAllowlist: ["cell phone"],
+      scoreThreshold: 0.3,
+      maxResults: 1,
+    });
+  } catch {
+    phone = { status: "error", box: null };
+  }
+}
+
+function samplePhone(bitmap, timestamp) {
+  if (!phoneDetector || timestamp - lastPhoneSample < phoneIntervalMs) return;
+  lastPhoneSample = timestamp;
+
+  try {
+    const sample = phoneDetector.detectForVideo(bitmap, timestamp).detections[0]?.boundingBox;
+    if (!sample) {
+      if (timestamp - lastPhoneHit > phoneHoldMs) {
+        phone = { status: "clear", box: null };
+      }
+      return;
+    }
+
+    const clamp = (value) => Math.min(1, Math.max(0, value));
+    const x = clamp(sample.originX / bitmap.width);
+    const y = clamp(sample.originY / bitmap.height);
+    const right = clamp((sample.originX + sample.width) / bitmap.width);
+    const bottom = clamp((sample.originY + sample.height) / bitmap.height);
+    lastPhoneHit = timestamp;
+    lastPhoneBox = { x, y, width: right - x, height: bottom - y };
+    phone = { status: "detected", box: lastPhoneBox };
+  } catch {
+    phone = { status: "error", box: null };
+  }
+}
 
 self.onmessage = async ({ data }) => {
   if (data.type === "init") {
@@ -24,6 +75,7 @@ self.onmessage = async ({ data }) => {
         outputFacialTransformationMatrixes: false,
       });
       self.postMessage({ type: "ready" });
+      void loadPhoneDetector(files);
     } catch {
       self.postMessage({ type: "error" });
     }
@@ -46,8 +98,9 @@ self.onmessage = async ({ data }) => {
     const right = categories.find((c) => c.categoryName === "eyeBlinkRight")?.score;
     const eyes =
       boxes.length === 1 && left !== undefined && right !== undefined ? { left, right } : null;
-    // Pixels/landmarks stay here. Only normalized boxes and eyelid scores leave.
-    self.postMessage({ type: "result", boxes, eyes });
+    samplePhone(bitmap, timestamp);
+    // Only normalized boxes and eyelid scores leave the worker.
+    self.postMessage({ type: "result", boxes, eyes, phone });
   } catch {
     self.postMessage({ type: "error" });
   } finally {
