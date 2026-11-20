@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { SessionTabControls } from "@/components/SessionTabControls";
 import { useLocalCamera } from "@/lib/camera/useLocalCamera";
 
 export default function NewSessionPage() {

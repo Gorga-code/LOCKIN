@@ -112,6 +112,24 @@
         "indonesiaEast": "Indonesia — Eastern"
       }
     },
+        "extension": {
+      "title": "Chrome extension",
+      "description": "Choose open tabs to close before you start your session.",
+      "install": "Install the extension",
+      "installSteps": "Open <code>chrome://extensions</code>, turn on Developer mode, select Load unpacked, then choose the <code>extension</code> folder in this project.",
+      "connect": "Connect extension",
+      "refresh": "Refresh tabs",
+      "tabList": "Open Chrome tabs",
+      "empty": "There are no other tabs open.",
+      "untitled": "Untitled tab",
+      "working": "Waiting for Chrome…",
+      "unavailable": "Could not connect. Load the extension in Chrome and open LOCKIN on port 3000, then try again.",
+      "close": "Close selected ({count})",
+      "confirm": "{count, plural, one {Close # selected Chrome tab?} other {Close # selected Chrome tabs?}}",
+      "closed": "{count, plural, one {Closed # tab.} other {Closed # tabs.}}",
+      "partial": "Closed {closed}. Skipped {skipped}. Refresh the list to check your tabs.",
+      "closeError": "Could not verify which tabs closed. Refresh the tab list to try again."
+    },
     "modes": {
       "title": "How do you want to study?",
       "solo": "Start solo session",
