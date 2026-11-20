@@ -112,9 +112,9 @@
         "indonesiaEast": "Indonesia — Eastern"
       }
     },
-        "extension": {
+    "extension": {
       "title": "Chrome extension",
-      "description": "Choose open tabs to close before you start your session.",
+      "description": "Choose open tabs to lock. Locked tabs stay open but bounce you back to LOCKIN until your solo session ends.",
       "install": "Install the extension",
       "installSteps": "Open <code>chrome://extensions</code>, turn on Developer mode, select Load unpacked, then choose the <code>extension</code> folder in this project.",
       "connect": "Connect extension",
@@ -124,11 +124,13 @@
       "untitled": "Untitled tab",
       "working": "Waiting for Chrome…",
       "unavailable": "Could not connect. Load the extension in Chrome and open LOCKIN on port 3000, then try again.",
-      "close": "Close selected ({count})",
-      "confirm": "{count, plural, one {Close # selected Chrome tab?} other {Close # selected Chrome tabs?}}",
-      "closed": "{count, plural, one {Closed # tab.} other {Closed # tabs.}}",
-      "partial": "Closed {closed}. Skipped {skipped}. Refresh the list to check your tabs.",
-      "closeError": "Could not verify which tabs closed. Refresh the tab list to try again."
+      "lock": "Lock selected ({count})",
+      "lockedTag": "Locked",
+      "lockedBadge": "{count} locked",
+      "confirm": "{count, plural, one {Lock # selected Chrome tab until your solo session ends?} other {Lock # selected Chrome tabs until your solo session ends?}}",
+      "locked": "{count, plural, one {Locked # tab until your solo session ends.} other {Locked # tabs until your solo session ends.}}",
+      "partial": "Locked {locked}. Skipped {skipped}. Refresh the list to check your tabs.",
+      "lockError": "Could not verify which tabs were locked. Refresh the tab list to try again."
     },
     "modes": {
       "title": "How do you want to study?",
@@ -150,6 +152,7 @@
       "resume": "Resume",
       "stop": "Stop",
       "stopConfirm": "End this session? The timer will stop.",
+      "lockedTabs": "{count, plural, one {# Chrome tab locked until this session ends} other {# Chrome tabs locked until this session ends}}",
       "tasks": {
         "title": "Tasks",
         "inputLabel": "New task",
