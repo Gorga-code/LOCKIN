@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-view="blob" data-dock="right">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LOCKIN Desktop</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./widget-shell.css" />
+    <script type="module" src="./widget.js"></script>
+  </head>
+  <body>
+    <main class="widget" id="widget">
+      <span class="dock-panel" data-edge="left" aria-hidden="true"></span>
+      <span class="dock-panel" data-edge="right" aria-hidden="true"></span>
+      <span class="dock-panel" data-edge="top" aria-hidden="true"></span>
+      <span class="dock-panel" data-edge="bottom" aria-hidden="true"></span>
+
+      <span class="dock-target" aria-hidden="true"></span>
+      <div class="surface">
+        <div id="drag-handle" class="handle" tabindex="0" aria-label="Drag LOCKIN around">
+          <div class="blob" aria-hidden="true">
+            <span class="eye eye-left"></span>
+            <span class="eye eye-right"></span>
+          </div>
+          <div class="focus-text">
+            <div class="focus-heading">
+              <strong>Focus mode</strong>
+              <span id="focus-time" class="focus-time" hidden></span>
+            </div>
+            <p id="focus-message" role="status" aria-atomic="true">Camera off</p>
+            <p id="focus-metrics" class="focus-metrics" hidden>
+              <span></span><span></span><span></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="controls" aria-label="Focus session controls">
+          <button id="focus-start" class="focus-button" type="button">Start</button>
+          <button id="focus-stop" class="focus-button" type="button" hidden>Stop</button>
+          <button id="close" class="close" type="button" aria-label="Close LOCKIN Desktop">&times;</button>
+        </div>
+      </div>
+
+      <video id="focus-camera" class="camera" muted playsinline aria-hidden="true" tabindex="-1"></video>
+    </main>
+  </body>
+</html>

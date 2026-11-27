@@ -1,0 +1,15 @@
+{
+  "name": "lockin-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "vision:prepare": "node scripts/prepare-vision.mjs",
+    "prestart": "npm run vision:prepare",
+    "start": "tauri dev --no-dev-server",
+    "prebuild": "npm run vision:prepare",
+    "build": "tauri build --no-bundle"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.6"
+  }
+}

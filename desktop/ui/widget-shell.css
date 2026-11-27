@@ -1,0 +1,167 @@
+.widget {
+  --panel-width: 302px;
+  --panel-height: 60px;
+  --tab-width: 58px;
+  --tab-height: 56px;
+  --motion: 150ms cubic-bezier(.21, .83, .25, 1);
+  padding: 0;
+}
+
+.widget .dock-panel { display: none; }
+
+:root:is([data-dock="left"], [data-dock="right"]) .widget { --panel-width: 308px; }
+:root:is([data-dock="top"], [data-dock="bottom"]) .widget {
+  --panel-height: 66px;
+  --tab-width: 92px;
+  --tab-height: 38px;
+}
+
+.widget :is(.surface, .dock-target) {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+}
+
+.widget .dock-target {
+  width: var(--tab-width);
+  height: var(--tab-height);
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.widget .surface {
+  width: var(--panel-width);
+  height: var(--panel-height);
+  overflow: hidden;
+  border: 1px solid #5b4b6d;
+  border-radius: 17px;
+  background: linear-gradient(150deg, #282132, #191923);
+  transition: width var(--motion), height var(--motion), border-radius 90ms ease-out;
+}
+
+:root[data-view="blob"] .widget .surface { width: var(--tab-width); height: var(--tab-height); }
+:root[data-view="warning"] .widget .surface { width: 216px; height: 56px; }
+:root[data-dock] .widget .surface {
+  border-color: #756087;
+  background: linear-gradient(var(--dock-gradient, 135deg), #3a2b4a, #201b2b 65%);
+}
+
+:root[data-dock="left"] .widget { --dock-gradient: 90deg; }
+:root[data-dock="left"] .widget :is(.surface, .dock-target) { left: 0; translate: 0 -50%; }
+:root[data-dock="left"] .widget .surface {
+  border-left: 0;
+  border-radius: 0 17px 17px 0;
+  transform-origin: left center;
+}
+
+:root[data-dock="right"] .widget { --dock-gradient: 270deg; }
+:root[data-dock="right"] .widget :is(.surface, .dock-target) { left: auto; right: 0; translate: 0 -50%; }
+:root[data-dock="right"] .widget .surface {
+  border-right: 0;
+  border-radius: 17px 0 0 17px;
+  transform-origin: right center;
+}
+
+:root[data-dock="top"] .widget { --dock-gradient: 180deg; }
+:root[data-dock="top"] .widget :is(.surface, .dock-target) { top: 0; translate: -50% 0; }
+:root[data-dock="top"] .widget .surface {
+  border-top: 0;
+  border-radius: 0 0 17px 17px;
+  transform-origin: center top;
+}
+
+:root[data-dock="bottom"] .widget { --dock-gradient: 0deg; }
+:root[data-dock="bottom"] .widget :is(.surface, .dock-target) { top: auto; bottom: 0; translate: -50% 0; }
+:root[data-dock="bottom"] .widget .surface {
+  border-bottom: 0;
+  border-radius: 17px 17px 0 0;
+  transform-origin: center bottom;
+}
+
+.widget .handle { position: absolute; inset: 0; display: block; }
+.widget .blob {
+  position: absolute;
+  top: 50%;
+  left: 13px;
+  width: 30px;
+  height: 30px;
+  translate: 0 -50%;
+  transition: background-color 120ms ease;
+}
+:root[data-dock] .widget .blob { transform: none; }
+:root[data-dock="right"] .widget .blob { left: auto; right: 13px; }
+:root:is([data-dock="top"], [data-dock="bottom"]) .widget .blob {
+  left: 50%;
+  right: auto;
+  translate: -50% -50%;
+}
+:root[data-view="warning"][data-dock="top"] .widget .blob { top: 3px; translate: -50% 0; }
+:root[data-view="warning"][data-dock="bottom"] .widget .blob { top: auto; bottom: 3px; translate: -50% 0; }
+.widget .eye { top: 43%; }
+.widget .eye-left { left: 26%; }
+.widget .eye-right { right: 26%; }
+
+.widget .focus-text {
+  position: absolute;
+  top: 50%;
+  left: 54px;
+  width: 149px;
+  translate: 0 -50%;
+  gap: 3px;
+  line-height: 1.15;
+  text-align: left;
+}
+:root[data-dock="right"] .widget .focus-text { left: auto; right: 54px; }
+:root:is([data-dock="top"], [data-dock="bottom"]) .widget .focus-text { left: 11px; width: 121px; }
+.widget .focus-heading { gap: 6px; align-items: baseline; font-size: 11.5px; }
+.widget #focus-message { font-size: 11px; }
+.widget .focus-time,
+.widget .focus-metrics { font-size: 9.5px; }
+
+.widget .focus-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 6px;
+}
+.widget .focus-metrics > span { white-space: nowrap; }
+
+.widget .controls {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  translate: 0 -50%;
+  align-items: center;
+  gap: 5px;
+}
+:root[data-dock="right"] .widget .controls { right: auto; left: 8px; flex-direction: row-reverse; }
+.widget .focus-button { min-width: 54px; min-height: 26px; }
+.widget .close { width: 22px; height: 26px; }
+
+.widget :is(.focus-text, .controls) {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 75ms ease-out;
+}
+:root[data-view="controls"] .widget :is(.focus-text, .controls),
+:root[data-view="warning"] .widget .focus-text {
+  opacity: 1;
+  transition: opacity 95ms ease-out 40ms;
+}
+:root[data-view="controls"] .widget .controls { pointer-events: auto; }
+
+:root[data-view="warning"] .widget :is(.focus-heading, .focus-metrics) { display: none; }
+:root[data-view="warning"] .widget .focus-text { left: 53px; right: 9px; width: auto; }
+:root[data-view="warning"][data-dock="right"] .widget .focus-text { left: 9px; right: 53px; }
+:root[data-view="warning"]:is([data-dock="top"], [data-dock="bottom"]) .widget .focus-text {
+  left: 8px;
+  right: 8px;
+  text-align: center;
+  translate: none;
+}
+:root[data-view="warning"][data-dock="top"] .widget .focus-text { top: auto; bottom: 4px; }
+:root[data-view="warning"][data-dock="bottom"] .widget .focus-text { top: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .widget :is(.surface, .focus-text, .controls) { transition: none !important; }
+}
